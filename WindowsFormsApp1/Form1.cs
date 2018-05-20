@@ -61,11 +61,12 @@ namespace WindowsFormsApp1
                 string[] array = secilenKisi.Network.Split(',');
                 for (int i = 0; i < array.Length; i++)
                 {
-                    if (array[i] != "")
+                    if (array[i] != "" && array[i].Length==10)
                     {
                         long gelenNo = Convert.ToInt64(array[i]);
-                        VW_Ogrenci_Network og = context.VW_Ogrenci_Network.First(a => a.No == gelenNo);
-                        arkadasListem.Add(og);
+                        VW_Ogrenci_Network og = context.VW_Ogrenci_Network.FirstOrDefault(a => a.No == gelenNo);
+                        if (og != null)
+                            arkadasListem.Add(og);
                     }
                 }
                 dgvMyFriend.DataSource = arkadasListem;
@@ -205,7 +206,7 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hata", ex.Message);
+                MessageBox.Show(ex.Message, "Uyarı...!");
             }
         }
 
