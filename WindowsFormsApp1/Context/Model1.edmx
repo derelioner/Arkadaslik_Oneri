@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No" Type="bigint" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OgrenciNetWork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgrenciNo" Type="bigint" />
+          <Property Name="Network" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="OgrenciProfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No" Type="bigint" />
+          <Property Name="Cevap" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MH.dbo.VW_Ogrenci_Network' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_Ogrenci_Network">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="No" Type="bigint" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="Network" Type="nvarchar" MaxLength="500" />
+          <Property Name="Cevap" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="MHModelStoreContainer">
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgrenciNetWork" EntityType="Self.OgrenciNetWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgrenciProfil" EntityType="Self.OgrenciProfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_Ogrenci_Network" EntityType="Self.VW_Ogrenci_Network" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_Ogrenci_Network].[id] AS [id], 
+    [VW_Ogrenci_Network].[No] AS [No], 
+    [VW_Ogrenci_Network].[AdSoyad] AS [AdSoyad], 
+    [VW_Ogrenci_Network].[Network] AS [Network], 
+    [VW_Ogrenci_Network].[Cevap] AS [Cevap]
+    FROM [dbo].[VW_Ogrenci_Network] AS [VW_Ogrenci_Network]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ogrenci" EntityType="MHModel.Ogrenci" />
+          <EntitySet Name="OgrenciNetWork" EntityType="MHModel.OgrenciNetWork" />
+          <EntitySet Name="OgrenciProfil" EntityType="MHModel.OgrenciProfil" />
+          <EntitySet Name="VW_Ogrenci_Network" EntityType="MHModel.VW_Ogrenci_Network" />
+        </EntityContainer>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No" Type="Int64" Nullable="false" />
+          <Property Name="AdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OgrenciNetWork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgrenciNo" Type="Int64" />
+          <Property Name="Network" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OgrenciProfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No" Type="Int64" />
+          <Property Name="Cevap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_Ogrenci_Network">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="No" Type="Int64" Nullable="false" />
+          <Property Name="AdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Network" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Cevap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MHModelStoreContainer" CdmEntityContainer="MHEntities">
+          <EntitySetMapping Name="Ogrenci">
+            <EntityTypeMapping TypeName="MHModel.Ogrenci">
+              <MappingFragment StoreEntitySet="Ogrenci">
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgrenciNetWork">
+            <EntityTypeMapping TypeName="MHModel.OgrenciNetWork">
+              <MappingFragment StoreEntitySet="OgrenciNetWork">
+                <ScalarProperty Name="Network" ColumnName="Network" />
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgrenciProfil">
+            <EntityTypeMapping TypeName="MHModel.OgrenciProfil">
+              <MappingFragment StoreEntitySet="OgrenciProfil">
+                <ScalarProperty Name="Cevap" ColumnName="Cevap" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Ogrenci_Network">
+            <EntityTypeMapping TypeName="MHModel.VW_Ogrenci_Network">
+              <MappingFragment StoreEntitySet="VW_Ogrenci_Network">
+                <ScalarProperty Name="Cevap" ColumnName="Cevap" />
+                <ScalarProperty Name="Network" ColumnName="Network" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ogrenci">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No" Type="bigint" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="OgrenciNetWork">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgrenciNo" Type="bigint" />
+    <Property Name="Network" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="OgrenciProfil">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No" Type="bigint" />
+    <Property Name="Cevap" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MH.dbo.VW_Ogrenci_Network' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_Ogrenci_Network">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="No" Type="bigint" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="100" />
+    <Property Name="Network" Type="nvarchar" MaxLength="500" />
+    <Property Name="Cevap" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="MHModelStoreContainer">
+    <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OgrenciNetWork" EntityType="Self.OgrenciNetWork" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OgrenciProfil" EntityType="Self.OgrenciProfil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VW_Ogrenci_Network" EntityType="Self.VW_Ogrenci_Network" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Ogrenci_Network].[id] AS [id], 
+    [VW_Ogrenci_Network].[No] AS [No], 
+    [VW_Ogrenci_Network].[AdSoyad] AS [AdSoyad], 
+    [VW_Ogrenci_Network].[Network] AS [Network], 
+    [VW_Ogrenci_Network].[Cevap] AS [Cevap]
+    FROM [dbo].[VW_Ogrenci_Network] AS [VW_Ogrenci_Network]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
