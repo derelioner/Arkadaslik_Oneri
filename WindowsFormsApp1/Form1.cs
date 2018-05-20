@@ -229,15 +229,5 @@ namespace WindowsFormsApp1
         {
 
         }
-
-        void Temizle()
-        {
-            dataGridView1.DataSource = null;
-            dataGridView2.DataSource = null;
-            dataGridView3.DataSource = null;
-            dataGridView4.DataSource = null;
-            textBox1.Text = null;
-            textBox2.Text = null;
-        }
     }
 }
