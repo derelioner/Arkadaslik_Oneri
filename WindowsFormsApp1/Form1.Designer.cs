@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.altClmNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +38,10 @@
             this.altClmLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.altClmPuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbl9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -66,10 +70,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lbl9 = new System.Windows.Forms.Label();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -130,9 +130,9 @@
             // altClmPuan
             // 
             this.altClmPuan.DataPropertyName = "Puan";
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.altClmPuan.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.altClmPuan.DefaultCellStyle = dataGridViewCellStyle1;
             this.altClmPuan.HeaderText = "Puan";
             this.altClmPuan.Name = "altClmPuan";
             // 
@@ -158,6 +158,42 @@
             this.groupBox2.Size = new System.Drawing.Size(983, 451);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
+            // 
+            // lbl9
+            // 
+            this.lbl9.AutoSize = true;
+            this.lbl9.Location = new System.Drawing.Point(599, 16);
+            this.lbl9.Name = "lbl9";
+            this.lbl9.Size = new System.Drawing.Size(0, 13);
+            this.lbl9.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(526, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Seçilen Kişi :";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(187, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Ad Soyad :";
+            // 
+            // textBox2
+            // 
+            this.textBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox2.Location = new System.Drawing.Point(260, 13);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 15;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label3
             // 
@@ -222,9 +258,9 @@
             // sagColmPuan
             // 
             this.sagColmPuan.DataPropertyName = "Puan";
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.sagColmPuan.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.sagColmPuan.DefaultCellStyle = dataGridViewCellStyle2;
             this.sagColmPuan.HeaderText = "Puan";
             this.sagColmPuan.Name = "sagColmPuan";
             // 
@@ -273,8 +309,8 @@
             // Puan
             // 
             this.Puan.DataPropertyName = "Puan";
-            dataGridViewCellStyle6.Format = "N2";
-            this.Puan.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Format = "N2";
+            this.Puan.DefaultCellStyle = dataGridViewCellStyle3;
             this.Puan.HeaderText = "Puan";
             this.Puan.Name = "Puan";
             // 
@@ -422,41 +458,6 @@
             this.label6.Size = new System.Drawing.Size(13, 13);
             this.label6.TabIndex = 1;
             this.label6.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(187, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Ad Soyad :";
-            // 
-            // textBox2
-            // 
-            this.textBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.textBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox2.Location = new System.Drawing.Point(260, 13);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 15;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(526, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Seçilen Kişi :";
-            // 
-            // lbl9
-            // 
-            this.lbl9.AutoSize = true;
-            this.lbl9.Location = new System.Drawing.Point(599, 16);
-            this.lbl9.Name = "lbl9";
-            this.lbl9.Size = new System.Drawing.Size(0, 13);
-            this.lbl9.TabIndex = 18;
             // 
             // Form1
             // 

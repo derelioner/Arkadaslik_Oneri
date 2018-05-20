@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+                #region KisiyiBul
                 long no = 0;
                 string adSoyad = textBox2.Text;
                 List<VW_Ogrenci_Network> arkadasListem = new List<VW_Ogrenci_Network>();
@@ -57,11 +58,12 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Aradağınız kişi bulunamadı lütfen alanları doğru giriniz..!");
                     return;
                 }
+                #endregion
 
                 string[] array = secilenKisi.Network.Split(',');
                 for (int i = 0; i < array.Length; i++)
                 {
-                    if (array[i] != "" && array[i].Length==10)
+                    if (array[i] != "" && array[i].Length == 10)
                     {
                         long gelenNo = Convert.ToInt64(array[i]);
                         VW_Ogrenci_Network og = context.VW_Ogrenci_Network.FirstOrDefault(a => a.No == gelenNo);
@@ -69,8 +71,10 @@ namespace WindowsFormsApp1
                             arkadasListem.Add(og);
                     }
                 }
+
                 dgvMyFriend.DataSource = arkadasListem;
                 label2.Text = arkadasListem.Count.ToString();
+
                 var digerList = context.VW_Ogrenci_Network.ToList();
                 foreach (var item in arkadasListem)
                 {
@@ -82,33 +86,32 @@ namespace WindowsFormsApp1
 
                 List<VW_Ogrenci_Network> egitimSetiPaket1 = arkadasListem.ToList();
                 foreach (var item in egitimSetiPaket1)
+                {
                     item.Label = 1;
+                }
+
                 List<VW_Ogrenci_Network> egitimSetiPaket2 = digerList.Take(digerList.Count / 2).ToList();
                 List<VW_Ogrenci_Network> egitimSeti = new List<VW_Ogrenci_Network>();
+
                 egitimSeti.AddRange(egitimSetiPaket1);
                 egitimSeti.AddRange(egitimSetiPaket2);
+
                 dataGridView2.DataSource = egitimSeti;
                 label5.Text = egitimSeti.Count.ToString();
 
-                List<VW_Ogrenci_Network> testSeti = digerList.ToList();
-                foreach (var item1 in egitimSetiPaket1)
-                {
-                    testSeti.Add(item1);
-                }
-
+                List<VW_Ogrenci_Network> testSeti = context.VW_Ogrenci_Network.ToList();
                 foreach (var item in egitimSetiPaket2)
                     testSeti.Remove(item);
-
 
                 dataGridView3.DataSource = testSeti.OrderByDescending(a => a.Label).ToList();
                 label3.Text = testSeti.Count.ToString();
 
+                #region Formul
                 double toplam;
-                double sonuc;
                 double[] B = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
                 double[] B1 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 1000; i++)
                 {
                     toplam = 0;
                     for (int j = 0; j < egitimSeti.Count; j++)
@@ -133,7 +136,7 @@ namespace WindowsFormsApp1
                                        B[15] * Convert.ToDouble(x[14]))))) - egitimSeti[j].Label;
 
                     }
-                    B1[0] = B[0] - (toplam / egitimSeti.Count * 0.01);
+                    B1[0] = B[0] - (toplam / egitimSeti.Count * 0.001);
 
                     for (int k = 0; k < 15; k++)
                     {
@@ -160,7 +163,7 @@ namespace WindowsFormsApp1
                                            B[15] * Convert.ToDouble(x[14]))))) - egitimSeti[j].Label) * Convert.ToDouble(x[k]);
 
                         }
-                        B1[k + 1] = B[k + 1] - (toplam / egitimSeti.Count * 0.01);
+                        B1[k + 1] = B[k + 1] - (toplam / egitimSeti.Count * 0.001);
 
                     }
 
@@ -193,6 +196,8 @@ namespace WindowsFormsApp1
                                        B[15] * Convert.ToDouble(ogC[14]))))) * 100;
                 }
 
+                #endregion
+
                 var sonListem = tumKisiler.Where(a => a.No != no && a.Label != 1).OrderByDescending(a => a.Puan).Take(10).ToList();
 
                 dataGridView1.DataSource = digerList;
@@ -218,6 +223,21 @@ namespace WindowsFormsApp1
                 kisiler.Add(item.AdSoyad);
             }
             textBox2.AutoCompleteCustomSource = kisiler;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        void Temizle()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView2.DataSource = null;
+            dataGridView3.DataSource = null;
+            dataGridView4.DataSource = null;
+            textBox1.Text = null;
+            textBox2.Text = null;
         }
     }
 }
